@@ -1,0 +1,52 @@
+.logo {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.logo__mark {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--color-accent);
+  color: #fff;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.05rem;
+  isolation: isolate;
+}
+
+.logo__mark::before {
+  content: "";
+  position: absolute;
+  inset: -3px;
+  border-radius: 50%;
+  border: 2px dashed var(--color-accent-soft-border);
+  z-index: -1;
+}
+
+.logo__word {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: var(--text-xl);
+  color: var(--color-text);
+  letter-spacing: -0.01em;
+}
+
+.logo__word-accent {
+  color: var(--color-accent);
+}
+
+.logo--sm .logo__mark {
+  width: 30px;
+  height: 30px;
+  font-size: 0.9rem;
+}
+
+.logo--sm .logo__word {
+  font-size: var(--text-lg);
+}

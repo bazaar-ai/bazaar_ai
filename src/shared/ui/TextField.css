@@ -1,0 +1,89 @@
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  width: 100%;
+}
+
+.field__label {
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.field__control {
+  display: flex;
+  align-items: stretch;
+  border: 1px solid var(--color-border-strong);
+  border-radius: var(--radius-sm);
+  background: var(--color-surface);
+  transition: border-color var(--duration-fast) var(--ease-standard),
+    box-shadow var(--duration-fast) var(--ease-standard);
+}
+
+.field__control:focus-within {
+  border-color: var(--color-accent);
+  box-shadow: var(--shadow-focus);
+}
+
+.field__prefix {
+  display: flex;
+  align-items: center;
+  padding: 0 var(--space-4);
+  border-right: 1px solid var(--color-border-strong);
+  background: var(--color-surface-muted);
+  border-radius: var(--radius-sm) 0 0 var(--radius-sm);
+  color: var(--color-text-muted);
+  font-size: var(--text-base);
+  font-weight: 500;
+}
+
+.field__input {
+  flex: 1;
+  min-width: 0;
+  height: 48px;
+  padding: 0 var(--space-4);
+  border: none;
+  outline: none;
+  background: transparent;
+  border-radius: var(--radius-sm);
+  font-size: var(--text-base);
+  color: var(--color-text);
+}
+
+.field__control--prefixed .field__input {
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+}
+
+.field__input::placeholder {
+  color: var(--color-text-faint);
+}
+
+.field__input--error {
+  color: var(--color-danger);
+}
+
+.field__control:has(.field__input--error) {
+  border-color: var(--color-danger);
+}
+
+.field__error {
+  font-size: var(--text-xs);
+  color: var(--color-danger);
+}
+
+.field-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-4);
+}
+
+.field-row.field--spaced {
+  margin-bottom: var(--space-2);
+}
+
+@media (max-width: 520px) {
+  .field-row {
+    grid-template-columns: 1fr;
+  }
+}
