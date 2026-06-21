@@ -169,7 +169,10 @@ export function AccountDetailsPage() {
                 }}
             />
             <span>
-            I accept the <Link to="/terms-and-privacy-policy">Terms of Use and Privacy Policy</Link>
+            I accept the{" "}
+              <a href="/terms-and-conditions.pdf" download>
+              Terms of Use and Privacy Policy
+            </a>
           </span>
           </label>
           {errors.agreed ? (

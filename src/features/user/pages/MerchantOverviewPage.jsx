@@ -1,3 +1,4 @@
+import { useOutletContext } from "react-router-dom";
 import "./MerchantOverviewPage.css";
 
 const RECENT_INVOICES = [
@@ -16,7 +17,8 @@ const STATUS_META = {
     settled:  { label: "Settled",  cls: "pill--settled"  },
 };
 
-export function MerchantOverviewPage({ user, onNavigate }) {
+export function MerchantOverviewPage() {
+    const { user, onNavigate } = useOutletContext();
     const today = new Date().toLocaleDateString("en-GB", {
         day: "numeric", month: "long", year: "numeric",
     });

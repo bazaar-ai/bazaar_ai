@@ -1,0 +1,17 @@
+.dash-layout {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background: var(--color-bg);
+}
+
+.dash-layout__body {
+    display: flex;
+    flex: 1;
+    min-height: 0;
+}
+
+.dash-layout__content {
+    flex: 1;
+    min-width: 0;
+}

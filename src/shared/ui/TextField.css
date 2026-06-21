@@ -18,12 +18,21 @@
   border-radius: var(--radius-sm);
   background: var(--color-surface);
   transition: border-color var(--duration-fast) var(--ease-standard),
-    box-shadow var(--duration-fast) var(--ease-standard);
+  box-shadow var(--duration-fast) var(--ease-standard);
 }
 
 .field__control:focus-within {
   border-color: var(--color-accent);
   box-shadow: var(--shadow-focus);
+}
+
+.field__control:has(.field__input:disabled) {
+  background: var(--color-surface-muted);
+}
+
+.field__input:disabled {
+  color: var(--color-text-muted);
+  cursor: not-allowed;
 }
 
 .field__prefix {
