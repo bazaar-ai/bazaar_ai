@@ -5,57 +5,57 @@ import { RoleCard } from "../components/RoleCard";
 import { useRegistration } from "../context/RegistrationContext";
 import { ROLE_META, UserRole } from "../userRole";
 
-const STEPS = ["Rol seç", "Məlumatlar", "Təsdiq"];
+const STEPS = ["Choose role", "Details", "Verify"];
 
 export function RoleSelectPage() {
-  const navigate = useNavigate();
-  const { formData, updateFields } = useRegistration();
+    const navigate = useNavigate();
+    const { formData, updateFields } = useRegistration();
 
-  const handleContinue = () => {
-    navigate("/qeydiyyat/melumatlar");
-  };
+    const handleContinue = () => {
+        navigate("/register/profile");
+    };
 
-  return (
-    <AuthShell>
-      <StepIndicator steps={STEPS} currentStep={1} />
+    return (
+        <AuthShell>
+            <StepIndicator steps={STEPS} currentStep={1} />
 
-      <h1 className="auth-title">Bazaar AI-da necə iştirak etmək istəyirsən?</h1>
-      <p className="auth-subtitle">
-        Seçimin sonradan hesab tənzimləmələrindən dəyişdirilə bilməz — düzgün seç.
-      </p>
+            <h1 className="auth-title">How do you want to participate in Bazaar AI?</h1>
+            <p className="auth-subtitle">
+                This choice can't be changed later from account settings — choose carefully.
+            </p>
 
-      <div className="role-grid">
-        <RoleCard
-          icon={<DocumentIcon />}
-          title={ROLE_META[UserRole.MERCHANT].label}
-          description={ROLE_META[UserRole.MERCHANT].description}
-          selected={formData.userRole === UserRole.MERCHANT}
-          onSelect={() => updateFields({ userRole: UserRole.MERCHANT })}
-        />
-        <RoleCard
-          icon={<TrendingUpIcon />}
-          title={ROLE_META[UserRole.INVESTOR].label}
-          description={ROLE_META[UserRole.INVESTOR].description}
-          selected={formData.userRole === UserRole.INVESTOR}
-          onSelect={() => updateFields({ userRole: UserRole.INVESTOR })}
-        />
-      </div>
+            <div className="role-grid">
+                <RoleCard
+                    icon={<DocumentIcon />}
+                    title={ROLE_META[UserRole.MERCHANT].label}
+                    description={ROLE_META[UserRole.MERCHANT].description}
+                    selected={formData.userRole === UserRole.MERCHANT}
+                    onSelect={() => updateFields({ userRole: UserRole.MERCHANT })}
+                />
+                <RoleCard
+                    icon={<TrendingUpIcon />}
+                    title={ROLE_META[UserRole.INVESTOR].label}
+                    description={ROLE_META[UserRole.INVESTOR].description}
+                    selected={formData.userRole === UserRole.INVESTOR}
+                    onSelect={() => updateFields({ userRole: UserRole.INVESTOR })}
+                />
+            </div>
 
-      <div className="auth-note">
-        <InfoIcon />
-        <p>
-          Admin və Compliance Officer hesabları ictimai qeydiyyatdan keçmir —
-          komanda tərəfindən daxili dəvətlə yaradılır.
-        </p>
-      </div>
+            <div className="auth-note">
+                <InfoIcon />
+                <p>
+                    Admin and Compliance Officer accounts aren't created through public
+                    registration — they're set up internally by the team via invite.
+                </p>
+            </div>
 
-      <Button fullWidth onClick={handleContinue}>
-        Davam et
-      </Button>
+            <Button fullWidth onClick={handleContinue}>
+                Continue
+            </Button>
 
-      <p className="auth-footer">
-        Artıq hesabın var? <Link to="/daxil-ol">Daxil ol</Link>
-      </p>
-    </AuthShell>
-  );
+            <p className="auth-footer">
+                Already have an account? <Link to="/sign-in">Sign In</Link>
+            </p>
+        </AuthShell>
+    );
 }

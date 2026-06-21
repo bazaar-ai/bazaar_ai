@@ -5,13 +5,13 @@ export const UserRole = {
 
 export const ROLE_META = {
   [UserRole.MERCHANT]: {
-    label: "Tacir",
+    label: "Merchant",
     description:
-      "İnvoyslarını yüklə, risk balını bir dəqiqəyə al, faktorinqlə pulunu bu gün nağdlaşdır.",
+        "Upload your invoices, get a risk score in under a minute, and turn them into cash today through factoring.",
   },
   [UserRole.INVESTOR]: {
-    label: "İnvestor",
+    label: "Investor",
     description:
-      "Yoxlanılmış invoys sövdələrinə investisiya et, illik 12–18% gəlir qazan.",
+        "Invest in verified invoice deals and earn 12–18% annual returns.",
   },
 };

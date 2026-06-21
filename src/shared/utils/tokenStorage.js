@@ -5,6 +5,12 @@ export function getAccessToken() {
 }
 
 export function setAccessToken(token) {
+  if (!token) {
+    console.error(
+        "setAccessToken called with an empty/undefined token. Check the API response shape."
+    );
+    return;
+  }
   localStorage.setItem(ACCESS_TOKEN_KEY, token);
 }
 

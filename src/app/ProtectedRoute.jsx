@@ -5,7 +5,7 @@ export function ProtectedRoute({ children }) {
   const { isAuthenticated } = useAuth();
 
   if (!isAuthenticated) {
-    return <Navigate to="/qeydiyyat" replace />;
+    return <Navigate to="/sign-in" replace />;
   }
 
   return children;

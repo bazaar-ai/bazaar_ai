@@ -45,24 +45,24 @@ export function CodeInput({ length = 6, value, onChange, error }) {
   };
 
   return (
-    <div className="code-input">
-      <div className="code-input__boxes">
-        {digits.map((digit, index) => (
-          <input
-            key={index}
-            ref={(el) => (inputsRef.current[index] = el)}
-            className={`code-input__box${error ? " code-input__box--error" : ""}`}
-            type="text"
-            inputMode="numeric"
-            maxLength={length}
-            value={digit}
-            onChange={handleChange(index)}
-            onKeyDown={handleKeyDown(index)}
-            aria-label={`Rəqəm ${index + 1}`}
-          />
-        ))}
+      <div className="code-input">
+        <div className="code-input__boxes">
+          {digits.map((digit, index) => (
+              <input
+                  key={index}
+                  ref={(el) => (inputsRef.current[index] = el)}
+                  className={`code-input__box${error ? " code-input__box--error" : ""}`}
+                  type="text"
+                  inputMode="numeric"
+                  maxLength={length}
+                  value={digit}
+                  onChange={handleChange(index)}
+                  onKeyDown={handleKeyDown(index)}
+                  aria-label={`Digit ${index + 1}`}
+              />
+          ))}
+        </div>
+        {error ? <p className="field__error">{error}</p> : null}
       </div>
-      {error ? <p className="field__error">{error}</p> : null}
-    </div>
   );
 }

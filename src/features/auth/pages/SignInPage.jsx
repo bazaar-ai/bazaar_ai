@@ -30,7 +30,7 @@ export function SignInPage() {
       </form>
 
       <p className="auth-footer">
-        Hesabın yoxdur? <Link to="/qeydiyyat">Qeydiyyatdan keç</Link>
+        Hesabın yoxdur? <Link to="/register">Qeydiyyatdan keç</Link>
       </p>
     </AuthShell>
   );

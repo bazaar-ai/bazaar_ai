@@ -14,3 +14,11 @@ export function registerUser(payload) {
 export function verifyUser(payload) {
   return httpClient.post("/auth/verify", payload);
 }
+
+/**
+ * @param {{ email: string, password: string }} payload
+ * @returns {Promise<{ accessToken: string }>}
+ */
+export function loginUser(payload) {
+  return httpClient.post("/auth/login", payload);
+}

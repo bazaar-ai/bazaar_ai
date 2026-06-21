@@ -10,46 +10,46 @@ import { ProtectedRoute } from "./ProtectedRoute";
 import { useAuth } from "../shared/context/AuthContext";
 
 function RegistrationFlow() {
-  return (
-    <RegistrationProvider>
-      <Routes>
-        <Route index element={<RoleSelectPage />} />
-        <Route path="melumatlar" element={<AccountDetailsPage />} />
-        <Route
-          path="tesdiq"
-          element={
-            <RequireRegistrationEmail>
-              <VerifyPage />
-            </RequireRegistrationEmail>
-          }
-        />
-      </Routes>
-    </RegistrationProvider>
-  );
+    return (
+        <RegistrationProvider>
+            <Routes>
+                <Route index element={<RoleSelectPage />} />
+                <Route path="profile" element={<AccountDetailsPage />} />
+                <Route
+                    path="verify"
+                    element={
+                        <RequireRegistrationEmail>
+                            <VerifyPage />
+                        </RequireRegistrationEmail>
+                    }
+                />
+            </Routes>
+        </RegistrationProvider>
+    );
 }
 
 export function AppRoutes() {
-  const { isAuthenticated } = useAuth();
+    const { isAuthenticated } = useAuth();
 
-  return (
-    <Routes>
-      <Route
-        path="/"
-        element={
-          <Navigate to={isAuthenticated ? "/dashboard" : "/qeydiyyat"} replace />
-        }
-      />
-      <Route path="/qeydiyyat/*" element={<RegistrationFlow />} />
-      <Route path="/daxil-ol" element={<SignInPage />} />
-      <Route
-        path="/dashboard"
-        element={
-          <ProtectedRoute>
-            <DashboardPage />
-          </ProtectedRoute>
-        }
-      />
-      <Route path="*" element={<Navigate to="/" replace />} />
-    </Routes>
-  );
+    return (
+        <Routes>
+            <Route
+                path="/"
+                element={
+                    <Navigate to={isAuthenticated ? "/dashboard" : "/sign-in"} replace />
+                }
+            />
+            <Route path="/register/*" element={<RegistrationFlow />} />
+            <Route path="/sign-in" element={<SignInPage />} />
+            <Route
+                path="/dashboard"
+                element={
+                    <ProtectedRoute>
+                        <DashboardPage />
+                    </ProtectedRoute>
+                }
+            />
+            <Route path="*" element={<Navigate to="/" replace />} />
+        </Routes>
+    );
 }

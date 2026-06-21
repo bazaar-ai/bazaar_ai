@@ -9,24 +9,24 @@ export function DashboardPage() {
 
   const handleLogout = () => {
     logout();
-    navigate("/qeydiyyat", { replace: true });
+    navigate("/sign-in", { replace: true });
   };
 
   return (
-    <div className="dashboard">
-      <header className="dashboard__header">
-        <Logo size="sm" />
-        <Button variant="ghost" onClick={handleLogout}>
-          Çıxış et
-        </Button>
-      </header>
+      <div className="dashboard">
+        <header className="dashboard__header">
+          <Logo size="sm" />
+          <Button variant="ghost" onClick={handleLogout}>
+            Sign out
+          </Button>
+        </header>
 
-      <main className="dashboard__main">
-        <h1 className="dashboard__greeting">Salam! 👋</h1>
-        <p className="dashboard__subtext">
-          Hesabın hazırdır. Tezliklə bura sənin idarə paneli olacaq.
-        </p>
-      </main>
-    </div>
+        <main className="dashboard__main">
+          <h1 className="dashboard__greeting">Welcome! 👋</h1>
+          <p className="dashboard__subtext">
+            Your account is ready. This will soon be your dashboard.
+          </p>
+        </main>
+      </div>
   );
 }
