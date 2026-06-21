@@ -14,7 +14,7 @@ import {
   toE164AzPhone,
 } from "../../../shared/utils/validators";
 
-const STEPS = ["Rol seç", "Məlumatlar", "Təsdiq"];
+const STEPS = ["Choose role", "Details", "Verify"];
 
 const ROLE_ICON = {
   [UserRole.MERCHANT]: <DocumentIcon />,
@@ -43,12 +43,12 @@ export function AccountDetailsPage() {
       phone: validatePhone(formData.phone),
       password: validatePassword(formData.password),
       confirmPassword: validateConfirmPassword(
-        formData.password,
-        formData.confirmPassword
+          formData.password,
+          formData.confirmPassword
       ),
     };
     if (!agreed) {
-      nextErrors.agreed = "Davam etmək üçün şərtləri qəbul et";
+      nextErrors.agreed = "You must accept the terms to continue";
     }
     setErrors(nextErrors);
     return Object.values(nextErrors).every((error) => !error);
@@ -69,7 +69,7 @@ export function AccountDetailsPage() {
         password: formData.password,
         userRole: formData.userRole,
       });
-      navigate("/qeydiyyat/tesdiq");
+      navigate("/register/verify");
     } catch (error) {
       setSubmitError(error.message);
     } finally {
@@ -78,115 +78,114 @@ export function AccountDetailsPage() {
   };
 
   return (
-    <AuthShell>
-      <StepIndicator steps={STEPS} currentStep={2} />
+      <AuthShell>
+        <StepIndicator steps={STEPS} currentStep={2} />
 
-      <h1 className="auth-title">Hesab məlumatların</h1>
-      <p className="auth-subtitle">
-        Bu məlumatlar profilində və KYC prosesində istifadə olunacaq.
-      </p>
+        <h1 className="auth-title">Your account details</h1>
+        <p className="auth-subtitle">
+          This information will be used in your profile and the KYC process.
+        </p>
 
-      <div className="auth-summary-pill">
+        <div className="auth-summary-pill">
         <span className="auth-summary-pill__label">
           {ROLE_ICON[formData.userRole]}
-          Hesab növü: {ROLE_META[formData.userRole].label}
+          Account type: {ROLE_META[formData.userRole].label}
         </span>
-        <button
-          type="button"
-          className="auth-summary-pill__change"
-          onClick={() => navigate("/qeydiyyat")}
-        >
-          Dəyiş
-        </button>
-      </div>
-
-      {submitError ? <div className="form-error-banner">{submitError}</div> : null}
-
-      <form onSubmit={handleSubmit} noValidate>
-        <TextField
-          label="Ad və soyad"
-          placeholder="Elvin Məmmədov"
-          value={formData.name}
-          onChange={handleChange("name")}
-          error={errors.name}
-          containerClassName="field--spaced"
-          autoComplete="name"
-        />
-
-        <TextField
-          label="Email"
-          type="email"
-          placeholder="elvin@example.com"
-          value={formData.email}
-          onChange={handleChange("email")}
-          error={errors.email}
-          containerClassName="field--spaced"
-          autoComplete="email"
-        />
-
-        <TextField
-          label="Telefon nömrəsi"
-          prefix="+994"
-          placeholder="XX XXX XX XX"
-          value={formData.phone}
-          onChange={handleChange("phone")}
-          error={errors.phone}
-          containerClassName="field--spaced"
-          autoComplete="tel-national"
-          inputMode="numeric"
-        />
-
-        <div className="field-row field--spaced">
-          <TextField
-            label="Şifrə"
-            type="password"
-            placeholder="••••••••"
-            value={formData.password}
-            onChange={handleChange("password")}
-            error={errors.password}
-            autoComplete="new-password"
-          />
-          <TextField
-            label="Şifrəni təkrarla"
-            type="password"
-            placeholder="••••••••"
-            value={formData.confirmPassword}
-            onChange={handleChange("confirmPassword")}
-            error={errors.confirmPassword}
-            autoComplete="new-password"
-          />
+          <button
+              type="button"
+              className="auth-summary-pill__change"
+              onClick={() => navigate("/register")}
+          >
+            Change
+          </button>
         </div>
 
-        <label className="auth-checkbox">
-          <input
-            type="checkbox"
-            checked={agreed}
-            onChange={(event) => {
-              setAgreed(event.target.checked);
-              if (errors.agreed) {
-                setErrors((prev) => ({ ...prev, agreed: undefined }));
-              }
-            }}
+        {submitError ? <div className="form-error-banner">{submitError}</div> : null}
+
+        <form onSubmit={handleSubmit} noValidate>
+          <TextField
+              label="Full name"
+              placeholder="Elvin Mammadov"
+              value={formData.name}
+              onChange={handleChange("name")}
+              error={errors.name}
+              containerClassName="field--spaced"
+              autoComplete="name"
           />
-          <span>
-            İstifadə şərtlərini və <Link to="/mexfilik">məxfilik siyasətini</Link>{" "}
-            qəbul edirəm
+
+          <TextField
+              label="Email"
+              type="email"
+              placeholder="elvin@example.com"
+              value={formData.email}
+              onChange={handleChange("email")}
+              error={errors.email}
+              containerClassName="field--spaced"
+              autoComplete="email"
+          />
+
+          <TextField
+              label="Phone number"
+              prefix="+994"
+              placeholder="XX XXX XX XX"
+              value={formData.phone}
+              onChange={handleChange("phone")}
+              error={errors.phone}
+              containerClassName="field--spaced"
+              autoComplete="tel-national"
+              inputMode="numeric"
+          />
+
+          <div className="field-row field--spaced">
+            <TextField
+                label="Password"
+                type="password"
+                placeholder="••••••••"
+                value={formData.password}
+                onChange={handleChange("password")}
+                error={errors.password}
+                autoComplete="new-password"
+            />
+            <TextField
+                label="Confirm password"
+                type="password"
+                placeholder="••••••••"
+                value={formData.confirmPassword}
+                onChange={handleChange("confirmPassword")}
+                error={errors.confirmPassword}
+                autoComplete="new-password"
+            />
+          </div>
+
+          <label className="auth-checkbox">
+            <input
+                type="checkbox"
+                checked={agreed}
+                onChange={(event) => {
+                  setAgreed(event.target.checked);
+                  if (errors.agreed) {
+                    setErrors((prev) => ({ ...prev, agreed: undefined }));
+                  }
+                }}
+            />
+            <span>
+            I accept the <Link to="/terms-and-privacy-policy">Terms of Use and Privacy Policy</Link>
           </span>
-        </label>
-        {errors.agreed ? (
-          <p className="field__error" style={{ marginTop: "-12px", marginBottom: "16px" }}>
-            {errors.agreed}
-          </p>
-        ) : null}
+          </label>
+          {errors.agreed ? (
+              <p className="field__error" style={{ marginTop: "-12px", marginBottom: "16px" }}>
+                {errors.agreed}
+              </p>
+          ) : null}
 
-        <Button type="submit" fullWidth loading={submitting}>
-          Qeydiyyatı tamamla
-        </Button>
-      </form>
+          <Button type="submit" fullWidth loading={submitting}>
+            Complete registration
+          </Button>
+        </form>
 
-      <p className="auth-footer">
-        Artıq hesabın var? <Link to="/daxil-ol">Daxil ol</Link>
-      </p>
-    </AuthShell>
+        <p className="auth-footer">
+          Already have an account? <Link to="/sign-in">Sign in</Link>
+        </p>
+      </AuthShell>
   );
 }
